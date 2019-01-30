@@ -44,15 +44,16 @@ public class CollectionTestSuite {
     @Test
     public void testOddNumbersExterminatorNormalList2() {
         //given
+        int numberOfElements = 10;
         ArrayList<Integer> list = new ArrayList<Integer>();
         ArrayList<Integer> evenList = new ArrayList<Integer>();
-        for (Integer i = 0; i < 10; i++) {
+        for (Integer i = 0; i < numberOfElements; i++) {
             list.add(i);
         }
         //when
         ArrayList<Integer> result = OddNumbersExterminator.exterminate(list);
         //then
-        for (Integer i = 0; i < 10; i += 2) {
+        for (Integer i = 0; i < numberOfElements; i += 2) {
             evenList.add(i);
         }
         Assert.assertEquals(evenList, result);
