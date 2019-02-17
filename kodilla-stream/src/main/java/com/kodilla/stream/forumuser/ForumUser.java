@@ -22,9 +22,7 @@ ilość opublikowanych postów (typu int)*/
         this.posts = posts;
     }
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
 
     public String getUsername() {
         return username;
@@ -40,5 +38,16 @@ ilość opublikowanych postów (typu int)*/
 
     public int getPosts() {
         return posts;
+    }
+
+    @Override
+    public String toString() {
+        return "ForumUser{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", sex=" + sex +
+                ", dateOfBirth=" + dateOfBirth +
+                ", posts=" + posts +
+                '}';
     }
 }
