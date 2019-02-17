@@ -14,42 +14,76 @@ public class CalculateAvdancedStatisticsTestSuite {
     @Test
     public void testCalculateAdvStatistics() {
         //given
-//        Statistics statisticMock = mock(Statistics.class);
+        Statistics statisticMock = mock(Statistics.class);
         List<String> names = new ArrayList<>();
         int noOfUsers = 0;
         Assert.assertEquals(0, 0);
         //when
-//        when(statisticMock.postsCount()).thenReturn(0);
-//        when(statisticMock.commentsCount()).thenReturn(0);
-//
-//        CalculateAdvancedStatistics advancedStatistics = new CalculateAdvancedStatistics(statisticMock);
-////        //then
-//        Assert.assertEquals(0, advancedStatistics.getNoOfUsers());
-//        Assert.assertEquals(0, advancedStatistics.getNoOfPosts());
-//        Assert.assertEquals(0, advancedStatistics.getNoOfComments());
-//
-//        Assert.assertEquals(-1, advancedStatistics.getAvgCommentsPerPost(), 5);
-//        Assert.assertEquals(-1, advancedStatistics.getAvgCommentsPerUser(), -5);
-//        Assert.assertEquals(-1, advancedStatistics.getAvgPostsPerUser(), -5);
+        when(statisticMock.postsCount()).thenReturn(0);
+        when(statisticMock.commentsCount()).thenReturn(0);
 
-//        noOfUsers = 100;
-//        for (int i = 0; i < noOfUsers; i++) {
-//            names.add("Name");
-//        }
-//        Statistics statisticMock = mock(Statistics.class);
-//        CalculateAdvancedStatistics advancedStatistics = new CalculateAdvancedStatistics(statisticMock);
-//        System.out.println(names.size());
-//        when(statisticMock.usersNames()).thenReturn(names);
-//        when(statisticMock.postsCount()).thenReturn(1000);
-//        when(statisticMock.commentsCount()).thenReturn(50);
-//
-//        //then
-//        Assert.assertEquals(100, advancedStatistics.getNoOfUsers());
-//        Assert.assertEquals(advancedStatistics.getNoOfPosts(), 1000);
-//        Assert.assertEquals(advancedStatistics.getNoOfComments(), 50);
-//
-//        Assert.assertEquals(advancedStatistics.getAvgCommentsPerPost(), 0.05, 5);
-//        Assert.assertEquals(advancedStatistics.getAvgCommentsPerUser(), 0.5, 5);
-//        Assert.assertEquals(advancedStatistics.getAvgPostsPerUser(), 10, 5);
+        CalculateAdvancedStatistics advancedStatistics = new CalculateAdvancedStatistics(statisticMock);
+        //then
+        Assert.assertEquals(0, advancedStatistics.getNoOfUsers());
+        Assert.assertEquals(0, advancedStatistics.getNoOfPosts());
+        Assert.assertEquals(0, advancedStatistics.getNoOfComments());
+
+        Assert.assertEquals(-1, advancedStatistics.getAvgCommentsPerPost(), 5);
+        Assert.assertEquals(-1, advancedStatistics.getAvgCommentsPerUser(), -5);
+        Assert.assertEquals(-1, advancedStatistics.getAvgPostsPerUser(), -5);
+    }
+
+    @Test
+    public void testCalculateAdvStatistics2() {
+        //given
+        List<String> names = new ArrayList<>();
+        int noOfUsers = 0;
+
+        noOfUsers = 100;
+        for (int i = 0; i < noOfUsers; i++) {
+            names.add("Name");
+        }
+        Statistics statisticMock = mock(Statistics.class);
+
+        when(statisticMock.usersNames()).thenReturn(names);
+        when(statisticMock.postsCount()).thenReturn(1000);
+        when(statisticMock.commentsCount()).thenReturn(50);
+
+        CalculateAdvancedStatistics advancedStatistics = new CalculateAdvancedStatistics(statisticMock);
+        //then
+        Assert.assertEquals(100, advancedStatistics.getNoOfUsers());
+        Assert.assertEquals(advancedStatistics.getNoOfPosts(), 1000);
+        Assert.assertEquals(advancedStatistics.getNoOfComments(), 50);
+
+        Assert.assertEquals(advancedStatistics.getAvgCommentsPerPost(), 0.05, 5);
+        Assert.assertEquals(advancedStatistics.getAvgCommentsPerUser(), 0.5, 5);
+        Assert.assertEquals(advancedStatistics.getAvgPostsPerUser(), 10, 5);
+    }
+
+    @Test
+    public void testCalculateAdvStatistics3() {
+        //given
+        List<String> names = new ArrayList<>();
+        int noOfUsers = 0;
+
+        noOfUsers = 100;
+        for (int i = 0; i < noOfUsers; i++) {
+            names.add("Name");
+        }
+        Statistics statisticMock = mock(Statistics.class);
+
+        when(statisticMock.usersNames()).thenReturn(names);
+        when(statisticMock.postsCount()).thenReturn(10);
+        when(statisticMock.commentsCount()).thenReturn(50);
+
+        CalculateAdvancedStatistics advancedStatistics = new CalculateAdvancedStatistics(statisticMock);
+        //then
+        Assert.assertEquals(100, advancedStatistics.getNoOfUsers());
+        Assert.assertEquals(advancedStatistics.getNoOfPosts(), 10);
+        Assert.assertEquals(advancedStatistics.getNoOfComments(), 50);
+
+        Assert.assertEquals(advancedStatistics.getAvgCommentsPerPost(), 5, 0);
+        Assert.assertEquals(advancedStatistics.getAvgCommentsPerUser(), 0.5, 5);
+        Assert.assertEquals(advancedStatistics.getAvgPostsPerUser(), 0.1, 5);
     }
 }
