@@ -3,6 +3,7 @@ package com.kodilla.stream.portfolio;
 import org.junit.Assert;
 import org.junit.Test;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalDouble;
@@ -151,7 +152,9 @@ public class BoardTestSuite {
         double average =  project.getTaskLists().stream()
           .filter(inProgress::contains)
           .flatMap(t1 -> t1.getTasks().stream())
-                .mapToInt(t2 -> (LocalDate.now().getDayOfYear() - t2.getCreated().getDayOfYear()))
+                .map(t -> ChronoUnit.DAYS.between(t.getCreated(), LocalDate.now()))
+                .mapToInt(t -> t.intValue())
+//                .mapToInt(t2 -> (LocalDate.now().getDayOfYear() - t2.getCreated().getDayOfYear()))
 //                .map(t -> { return (LocalDate.now().getDayOfYear() - t.getCreated().getDayOfYear());})
                 .average().orElse(-1);
 
