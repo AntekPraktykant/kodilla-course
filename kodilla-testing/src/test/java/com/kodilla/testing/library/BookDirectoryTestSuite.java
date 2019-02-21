@@ -96,6 +96,7 @@ public class BookDirectoryTestSuite {
         List<Book> resultListOf0Books = new ArrayList<Book>();
         resultListOf0Books = generateListOfNBooks(0);
         LibraryUser user0 = new LibraryUser("user0", "user0", "0");
+        user0.setBooks(resultListOf0Books);
 
         when(libraryDatabaseMock.listBooksInHandsOf(user0)).thenReturn(resultListOf0Books);
 
@@ -111,11 +112,14 @@ public class BookDirectoryTestSuite {
         // Given
         LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
-        List<Book> resultListOf0Books = new ArrayList<Book>();
+//        List<Book> resultListOf0Books = new ArrayList<Book>();
         LibraryUser user1 = new LibraryUser("user1", "user1", "1");
         LibraryUser user5 = new LibraryUser("user5", "user5", "5");
         List<Book> resultListOf1Books = generateListOfNBooks(1);
         List<Book> resultListOf5Books = generateListOfNBooks(5);
+
+        user1.setBooks(resultListOf1Books);
+        user5.setBooks(resultListOf5Books);
 
         when(libraryDatabaseMock.listBooksInHandsOf(user1))
                 .thenReturn(resultListOf1Books);
@@ -137,14 +141,17 @@ public class BookDirectoryTestSuite {
         LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
         List<Book> resultListOf5Books = generateListOfNBooks(5);
-        when(libraryDatabaseMock.listBooksInHandsOf(new LibraryUser(anyString(), anyString(), anyString())))
+//Dlaczego takie podejście nie działa?        LibraryUser userX = new LibraryUser(anyString(),anyString(), anyString());
+        LibraryUser userX = new LibraryUser(anyString(), "a", "b");
+        userX.setBooks(resultListOf5Books);
+        when(libraryDatabaseMock.listBooksInHandsOf(userX))
                 .thenReturn(resultListOf5Books);
 
         // When
-        List<Book> theListOfBooks5 = bookLibrary.listBooksInHandsOf(new LibraryUser("a", "b", "c"));
+        List<Book> theListOfBooks5 = bookLibrary.listBooksInHandsOf(userX);
 
         // Then
         assertEquals(5, theListOfBooks5.size());
-        verify(libraryDatabaseMock, times(0)).listBooksInHandsOf(new LibraryUser(anyString(), anyString(), anyString()));
+        verify(libraryDatabaseMock, times(0)).listBooksInHandsOf(userX);
     }
 }

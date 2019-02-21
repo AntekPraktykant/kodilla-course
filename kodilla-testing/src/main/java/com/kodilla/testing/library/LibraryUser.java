@@ -1,9 +1,14 @@
 package com.kodilla.testing.library;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LibraryUser {
     String firstname;
     String lastname;
     String peselId;
+
+    List<Book> books = new ArrayList<>();
 
     public LibraryUser(String firstname, String lastname, String peselId) {
         this.firstname = firstname;
@@ -48,5 +53,13 @@ public class LibraryUser {
         result = 31 * result + lastname.hashCode();
         result = 31 * result + peselId.hashCode();
         return result;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    public List<Book> getBooks() {
+        return books;
     }
 }
