@@ -22,7 +22,7 @@ public class FirstChallenge {
         try {
             result = firstChallenge.divide(3, 0); // why it's not possible to use this in try (result = ...)
             System.out.println(result);
-        } catch (Exception e) {
+        } catch (ArithmeticException e) {
             System.out.println("Do not perform division by zero ");
         } finally {
             System.out.println("Finally here!");
