@@ -96,7 +96,6 @@ public class BookDirectoryTestSuite {
         List<Book> resultListOf0Books = new ArrayList<Book>();
         resultListOf0Books = generateListOfNBooks(0);
         LibraryUser user0 = new LibraryUser("user0", "user0", "0");
-        user0.setBooks(resultListOf0Books);
 
         when(libraryDatabaseMock.listBooksInHandsOf(user0)).thenReturn(resultListOf0Books);
 
@@ -117,9 +116,6 @@ public class BookDirectoryTestSuite {
         LibraryUser user5 = new LibraryUser("user5", "user5", "5");
         List<Book> resultListOf1Books = generateListOfNBooks(1);
         List<Book> resultListOf5Books = generateListOfNBooks(5);
-
-        user1.setBooks(resultListOf1Books);
-        user5.setBooks(resultListOf5Books);
 
         when(libraryDatabaseMock.listBooksInHandsOf(user1))
                 .thenReturn(resultListOf1Books);
@@ -142,8 +138,8 @@ public class BookDirectoryTestSuite {
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
         List<Book> resultListOf5Books = generateListOfNBooks(5);
 //Dlaczego takie podejście nie działa?        LibraryUser userX = new LibraryUser(anyString(),anyString(), anyString());
-        LibraryUser userX = new LibraryUser(anyString(), "a", "b");
-        userX.setBooks(resultListOf5Books);
+        LibraryUser userX = new LibraryUser("a", "a", "b");
+//        userX.setBooks(resultListOf5Books);
         when(libraryDatabaseMock.listBooksInHandsOf(userX))
                 .thenReturn(resultListOf5Books);
 
@@ -152,6 +148,6 @@ public class BookDirectoryTestSuite {
 
         // Then
         assertEquals(5, theListOfBooks5.size());
-        verify(libraryDatabaseMock, times(0)).listBooksInHandsOf(userX);
+        verify(libraryDatabaseMock, times(1)).listBooksInHandsOf(userX);
     }
 }
