@@ -40,9 +40,9 @@ public class AirportsList {
                 .map(Airport::getName)
                 .collect(Collectors.toList());
     }
-    public List<String> getAllAirportsAccesibleFromAirportWithMiddleLandingAt(String from, String middle) {
+    public List<String> getAllAirportsAccesibleToAirportWithMiddleLandingAt(String to, String middle) {
         return airports.stream()
-                .filter(airport -> airport.getName() == from)
+                .filter(airport -> airport.getName() == to)
                 .filter(airport -> airport.getFlightsTo().contains(middle))
                 .map(Airport::getName)
                 .collect(Collectors.toList());
