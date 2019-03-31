@@ -28,9 +28,8 @@ public class MovieStore {
     }
 
     public String streamTheMapOfTitles() {
-
         return getMovies().entrySet().stream()
-                .map(n -> n.getValue())
+                .map(n -> n.getValue() )
                 .map(Object::toString)
                 .collect(Collectors.joining(" ! "));
     }
