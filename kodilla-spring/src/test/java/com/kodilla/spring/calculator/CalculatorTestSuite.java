@@ -28,6 +28,5 @@ public class CalculatorTestSuite {
         Assert.assertEquals(17.0, sub, 0);
         Assert.assertEquals(6.0, mul, 0);
         Assert.assertEquals(2.0, div, 0);
-
     }
 }
