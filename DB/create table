@@ -1,0 +1,23 @@
+CREATE TABLE `ISSUESLISTS` (
+ `ID` int(11) NOT NULL,
+ `NAME` text COLLATE utf8_polish_ci NOT NULL,
+ PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci
+
+CREATE TABLE `ISSUES` (
+ `ID` int(11) NOT NULL,
+ `ISSUESLIST_ID` int(11) NOT NULL,
+ `SUMMARY` varchar(255) COLLATE utf8_polish_ci NOT NULL,
+ `DESCRIPTION` text COLLATE utf8_polish_ci NOT NULL,
+ `USER_ID_ASSIGNEDTO` int(11) NOT NULL,
+ PRIMARY KEY (`ID`),
+ KEY `ISSUESLIST_ID` (`ISSUESLIST_ID`),
+ CONSTRAINT `ISSUES_ibfk_1` FOREIGN KEY (`ISSUESLIST_ID`) REFERENCES `ISSUESLISTS` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci
+
+ALTER TABLE ISSUES
+ADD FOREIGN KEY (USER_ID_ASSIGNEDTO) REFERENCES USERS(USER_ID)
+
+INSERT INTO `ISSUESLISTS` (`ID`, `NAME`) VALUES ('1', 'ToDo'), ('2', 'In progress'), ('3', 'Done');
+
+INSERT INTO `ISSUES` (`ID`, `ISSUESLIST_ID`, `SUMMARY`, `DESCRIPTION`, `USER_ID_ASSIGNEDTO`) VALUES ('1', '3', 'aaa', 'aaa', '1'), ('2', '3', 'bbb', 'bbb', '2'), ('3', '3', 'ccc', 'ccc', '3'), ('4', '3', 'ddd', 'ddd', '4'), ('5', '3', 'eee', 'eee', '5'), ('6', '2', '111', '111', '1'), ('7', '2', '222', '222', '2'), ('8', '2', '333', '333', '3'), ('9', '2', '444', '444', '4'), ('10', '2', '555', '555', '5'), ('11', '1', '123', '123', '123'), ('12', '1', '234', '234', '2'), ('13', '1', '345', '345', '3'), ('14', '1', '456', '456', '4'), ('15', '1', '567', '567', '5');
