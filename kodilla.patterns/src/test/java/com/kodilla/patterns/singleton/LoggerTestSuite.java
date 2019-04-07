@@ -8,7 +8,7 @@ public class LoggerTestSuite {
     @Test
     public void testLog() {
         //given
-        Logger logger = new Logger();
+        Logger logger = Logger.getInstance();
         //when
         String message = "abc";
         logger.log(message);
